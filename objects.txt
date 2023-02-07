@@ -1,0 +1,14 @@
+IGuesser -> FastGuesser, MainGuesser (singletons).
+	guess(all_words, candidates)
+Feedback
+	constructor(guess): input 5 letters, (validate), capitalise. this is your 5-letter feedback. also store guessed word
+	guess_is_correct() -> boolean
+	trim_candidates(candidates) -> new_candidates, performing process_feedback
+Word
+	getCharList
+	
+	
+Main func: guess word, print word, keep guessing word until valid
+Main func: get ALL_WORDS
+	
+improvement: write out words to file at end

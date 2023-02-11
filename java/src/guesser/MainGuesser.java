@@ -1,15 +1,18 @@
+package guesser;
+
 import java.util.List;
 import java.util.Optional;
+import ai.Word;
 
 public class MainGuesser extends AbstractGuesser {
   private static final int MAX_NUM_CANDIDATES = 1000;
 
-  public MainGuesser(List<Word> allWords, List<Word> candidates) {
+  MainGuesser(List<Word> allWords, List<Word> candidates) {
     super(allWords, candidates);
   }
 
   @Override
-  Optional<Word> guess() {
+  public Optional<Word> guess() {
     return Optional.empty();
   }
 

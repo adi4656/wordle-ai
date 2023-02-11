@@ -1,3 +1,6 @@
+package guesser;
+
+import ai.Word;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -13,7 +16,7 @@ public class IOGuesser extends AbstractGuesser {
   }
 
   @Override
-  Optional<Word> guess() {
+  public Optional<Word> guess() {
     AbstractGuesser guesser = mainGuesser.willTakeTooLongToGuess() ? fastGuesser : mainGuesser;
     while(true) {
       Scanner inputter = new Scanner(System.in);

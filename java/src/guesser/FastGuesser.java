@@ -1,14 +1,17 @@
+package guesser;
+
+import ai.Word;
 import java.util.List;
 import java.util.Optional;
 
 public class FastGuesser extends AbstractGuesser {
 
-  public FastGuesser(List<Word> allWords, List<Word> candidates) {
+  FastGuesser(List<Word> allWords, List<Word> candidates) {
     super(allWords, candidates);
   }
 
   @Override
-  Optional<Word> guess() {
+  public Optional<Word> guess() {
     return Optional.empty();
   }
 }

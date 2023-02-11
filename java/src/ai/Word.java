@@ -1,3 +1,5 @@
+package ai;
+
 public class Word {
   static final int LENGTH = 5;
   private final String word;

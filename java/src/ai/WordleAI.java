@@ -1,6 +1,8 @@
+package ai;
+
+import guesser.AbstractGuesser;
+import guesser.IOGuesser;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -11,9 +13,9 @@ public class WordleAI {
   private static final java.nio.file.Path WORDLISTPATH = Paths.get("../../wordlist.txt");
 
   public static void main(String[] args) {
-    List<Word> all_words = buildWordList();
-    List<Word> candidates = new ArrayList<>(all_words);
-    List<Word> guesses = new ArrayList<>();
+    java.util.List<Word> all_words = buildWordList();
+    java.util.List<Word> candidates = new ArrayList<>(all_words);
+    java.util.List<Word> guesses = new ArrayList<>();
 
     while(true) {
       System.out.println("Number of candidates is " + candidates.size());

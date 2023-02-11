@@ -1,14 +1,15 @@
 package guesser;
 
+import java.util.Set;
 import word.Word;
 import java.util.List;
 import java.util.Optional;
 
 public abstract class AbstractGuesser {
-    protected final List<Word> allWords;
-    protected final List<Word> candidates;
+    protected final Set<Word> allWords;
+    protected final Set<Word> candidates;
 
-    protected AbstractGuesser(List<Word> allWords, List<Word> candidates) {
+    protected AbstractGuesser(Set<Word> allWords, Set<Word> candidates) {
         this.allWords = allWords;
         this.candidates = candidates;
     }

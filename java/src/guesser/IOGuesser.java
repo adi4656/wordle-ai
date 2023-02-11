@@ -1,5 +1,6 @@
 package guesser;
 
+import java.util.Set;
 import word.Word;
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +10,7 @@ public class IOGuesser extends AbstractGuesser {
   private final FastGuesser fastGuesser;
   private final MainGuesser mainGuesser;
 
-  public IOGuesser(List<Word> allWords, List<Word> candidates) {
+  public IOGuesser(Set<Word> allWords, Set<Word> candidates) {
     super(allWords, candidates);
     fastGuesser = new FastGuesser(allWords, candidates);
     mainGuesser = new MainGuesser(allWords, candidates);

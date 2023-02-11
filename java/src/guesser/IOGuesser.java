@@ -1,6 +1,6 @@
 package guesser;
 
-import ai.Word;
+import word.Word;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;

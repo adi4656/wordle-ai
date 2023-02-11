@@ -1,9 +1,8 @@
 package guesser;
 
-import ai.Word;
+import word.Word;
 import java.util.List;
 import java.util.Optional;
-import javax.swing.AbstractAction;
 
 public abstract class AbstractGuesser {
     protected final List<Word> allWords;

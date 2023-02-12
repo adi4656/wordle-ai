@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class ImmutableWordList extends WordList {
   private final Set<Word> wordSet;
-  private static final java.nio.file.Path WORDLISTPATH = Paths.get("../../wordlist.txt");
+  private static final java.nio.file.Path WORDLISTPATH = Paths.get("../wordlist.txt");
 
   public ImmutableWordList() {
     wordSet = new HashSet<>();
@@ -24,6 +24,10 @@ public class ImmutableWordList extends WordList {
         wordSet.add(new Word(line.trim()));
       }
     }
+  }
+
+  public void removeInvalidWord(Word invalid) {
+    wordSet.remove(invalid);
   }
 
   @Override

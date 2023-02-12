@@ -11,7 +11,6 @@ import word.ImmutableWordList;
 import word.Word;
 
 public class WordleAI {
-  private static final java.nio.file.Path WORDLISTPATH = Paths.get("../../wordlist.txt");
 
   public static void main(String[] args) {
     ImmutableWordList all_words = new ImmutableWordList();
@@ -20,7 +19,7 @@ public class WordleAI {
 
     while(true) {
       System.out.println("Number of candidates is " + candidates.size());
-      AbstractGuesser guesser = new IOGuesser(all_words.words(), candidates.words());
+      AbstractGuesser guesser = new IOGuesser(all_words, candidates);
       Optional<Word> guess = guesser.guess();
       if(guess.isEmpty()) {
         System.out.println("No candidates left!");

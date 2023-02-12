@@ -20,7 +20,7 @@ public class ImmutableWordList extends WordList {
       throw new RuntimeException(e);
     }
     for(String line : lines) {
-      if(line.length() == Word.LENGTH + 1) { // file will have space at the end of word
+      if(line.length() == Word.LENGTH) { // file will have space at the end of word
         wordSet.add(new Word(line.trim()));
       }
     }

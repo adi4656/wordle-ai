@@ -17,4 +17,7 @@ public class CandidateWordList extends WordList {
   public Set<Word> words() {
     return wordSet;
   }
+
+  public void process_feedback(Feedback feedback) {
+  }
 }

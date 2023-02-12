@@ -1,5 +1,8 @@
 package word;
 
+import static word.Feedback.LetterFeedback.CORRECT_POS;
+
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Feedback {
@@ -16,6 +19,15 @@ public class Feedback {
     for (int i = 0; i < Word.LENGTH; i++) {
       letterFeedbacks[i] = LetterFeedback.ctor(feedback.charAt(i));
     }
+  }
+
+  public boolean all_correct() {
+    for(LetterFeedback letterFeedback : letterFeedbacks) {
+      if(!letterFeedback.equals(CORRECT_POS)) {
+        return false;
+      }
+    }
+    return true;
   }
 
   private enum LetterFeedback {

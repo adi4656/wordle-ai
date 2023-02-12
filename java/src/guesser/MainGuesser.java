@@ -3,12 +3,14 @@ package guesser;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import word.CandidateWordList;
+import word.ImmutableWordList;
 import word.Word;
 
 public class MainGuesser extends AbstractGuesser {
   private static final int MAX_NUM_CANDIDATES = 1000;
 
-  MainGuesser(Set<Word> allWords, Set<Word> candidates) {
+  MainGuesser(ImmutableWordList allWords, CandidateWordList candidates) {
     super(allWords, candidates);
   }
 

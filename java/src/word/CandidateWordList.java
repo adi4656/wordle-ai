@@ -9,6 +9,10 @@ public class CandidateWordList extends WordList {
     wordSet = immutableWordList.words();
   }
 
+  public void removeInvalidWord(Word invalid) {
+    wordSet.remove(invalid);
+  }
+
   @Override
   public Set<Word> words() {
     return wordSet;

@@ -7,6 +7,7 @@ import word.CandidateWordList;
 import word.Feedback;
 import word.ImmutableWordList;
 import word.Word;
+import word.WordList;
 
 public class MainGuesser extends AbstractGuesser {
   private static final int MAX_NUM_CANDIDATES = 1000;
@@ -17,12 +18,12 @@ public class MainGuesser extends AbstractGuesser {
 
   @Override
   public Optional<Word> guess() {
-    System.out.println("Begiig gess");
-    Map<ImmutablePair<Word, Feedback>, Double> guessFeedbackToGain = buildGuessFeedbackToGain();
+    WordList allowedGuesses = candidates;
+    Map<ImmutablePair<Word, Feedback>, Double> guessFeedbackToGain = buildGuessFeedbackToGain(allowedGuesses);
 
     Optional<Word> finalGuess = Optional.empty();
     double highestExpectedGain = 0;
-    for(Word possibleGuess : allWords) {
+    for(Word possibleGuess : allowedGuesses) {
       double total = 0;
       for(Word candidate : candidates) {
         total += guessFeedbackToGain.get(new ImmutablePair<>(possibleGuess, new Feedback(possibleGuess, candidate)));
@@ -37,9 +38,9 @@ public class MainGuesser extends AbstractGuesser {
     return finalGuess;
   }
 
-  private Map<ImmutablePair<Word, Feedback>, Double> buildGuessFeedbackToGain() {
+  private Map<ImmutablePair<Word, Feedback>, Double> buildGuessFeedbackToGain(WordList allowedGuesses) {
     Map<ImmutablePair<Word, Feedback>, Double> guessFeedbackToGain = new HashMap<>();
-    for(Word guess : allWords) {
+    for(Word guess : allowedGuesses) {
       for(Feedback feedback : Feedback.allPossibleFeedbacks()) {
         ImmutablePair<Word, Feedback> key = new ImmutablePair<>(guess, feedback);
         guessFeedbackToGain.put(key, (double) 0);

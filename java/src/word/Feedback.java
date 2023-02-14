@@ -16,7 +16,7 @@ public class Feedback {
 
   private final LetterFeedback[] letterFeedbacks;
 
-  public static Iterable<Feedback> allPossibleFeedbacks() {
+  public static List<Feedback> allPossibleFeedbacks() {
     List<Feedback> feedbacks = new ArrayList<>();
     int numLetterFeedbacks = LetterFeedback.values().length;
     for(int i = 0; i < Math.pow(numLetterFeedbacks, Word.LENGTH); i++) {

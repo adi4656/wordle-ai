@@ -17,6 +17,7 @@ public class Feedback {
 
   public Feedback(Word guess) {
     // IO constructor.
+
     Scanner inputter = new Scanner(System.in);
     System.out.println("Feedback:");
     String feedback = inputter.nextLine();
@@ -28,21 +29,9 @@ public class Feedback {
 
   public Feedback(Word guess, Word correct) {
     // Constructor that computes feedback.
-    letterFeedbacks = new LetterFeedback[Word.LENGTH];
 
-    // Build map of chars in correct to where they occur
-    Map<Character, Map<Integer, Boolean>> correctCharsToTheirPositions = new HashMap<>();
-    for(int i = 0; i < Word.LENGTH; i++) {
-      Character correctCharAtI = correct.charAt(i);
-      if(correctCharsToTheirPositions.containsKey(correctCharAtI)) {
-        Map<Integer, Boolean> positions = correctCharsToTheirPositions.get(i);
-        positions.put(i, true);
-        correctCharsToTheirPositions.put(correctCharAtI, positions);
-      }
-      else {
-        correctCharsToTheirPositions.put(correctCharAtI, Map.of(i, true));
-      }
-    }
+    letterFeedbacks = new LetterFeedback[Word.LENGTH];
+    Map<Character, Map<Integer, Boolean>> correctCharsToTheirPositions = correct.mapCharsToTheirPositions();
 
     for(int i = 0; i < Word.LENGTH; i++) {
       Character guessCharAtI = guess.charAt(i);
@@ -55,6 +44,29 @@ public class Feedback {
         letterFeedbacks[i] = CORRECT_POS;
       }
     }
+  }
+
+  public boolean eliminated(Word guess, Word candidate) {
+    Map<Character, Map<Integer, Boolean>> candidateCharsToTheirPositions = candidate.mapCharsToTheirPositions();
+
+    for(int i = 0; i < Word.LENGTH; i++) {
+      Character guessCharAtI = guess.charAt(i);
+      Character candidateCharAtI = candidate.charAt(i);
+      if(letterFeedbacks[i] == CORRECT_POS && candidateCharAtI != guessCharAtI) {
+        return true;
+      } else if (letterFeedbacks[i] == NOT_IN_WORD && candidateCharsToTheirPositions.containsKey(guessCharAtI)) {
+        return true;
+      } else if (letterFeedbacks[i] == IN_WORD) {
+        if (!candidateCharsToTheirPositions.containsKey(guessCharAtI)) {
+          return true;
+        }
+        if(candidateCharAtI == guessCharAtI) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
   public boolean all_correct() {

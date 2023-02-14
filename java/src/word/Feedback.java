@@ -30,13 +30,13 @@ public class Feedback {
     return true;
   }
 
-  private enum LetterFeedback {
+  enum LetterFeedback {
     NOT_IN_WORD,
     IN_WORD,
     CORRECT_POS;
 
-    private static LetterFeedback ctor(char c) {
-      switch (c) {
+    private static LetterFeedback ctor(Character c) {
+      switch (c.toString().toUpperCase().charAt(0)) {
         case 'B' -> {
           return NOT_IN_WORD;
         }

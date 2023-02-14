@@ -81,14 +81,14 @@ def guess(current_words, WORDS, use_all_words = False):
         
     all_guesses = WORDS if use_all_words else current_words
     feedbacks = product(GREEN + YELLOW + REJECT, repeat = LENGTH)
-    guesses_and_feedbacks = [(guess, feedback) for guess in all_guesses for feedback in feedbacks]
+
     guess_feedback_to_gain = defaultdict(int)
-    c = 0
-    for (guess, feedback) in guesses_and_feedbacks:
-        for correct in current_words:
-            if eliminated(guess, feedback, correct):
-                guess_feedback_to_gain["".join((guess, "".join(feedback)))] += 1
-        c += 1
+    for guess in all_guesses:
+        for feedback in feedbacks:
+            for correct in current_words:
+                if eliminated(guess, feedback, correct):
+                    guess_feedback_to_gain["".join((guess, "".join(feedback)))] += 1
+                    
     elimination_totals = defaultdict(int)
     for guess in all_guesses:
         for candidate in current_words:

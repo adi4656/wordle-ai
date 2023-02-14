@@ -11,4 +11,8 @@ public class Word {
   public String toString() {
     return word;
   }
+
+  Character charAt(int i) {
+    return word.charAt(i);
+  }
 }

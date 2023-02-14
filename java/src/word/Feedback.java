@@ -7,6 +7,7 @@ import static word.Feedback.LetterFeedback.NOT_IN_WORD;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -14,6 +15,10 @@ import java.util.Scanner;
 public class Feedback {
 
   private final LetterFeedback[] letterFeedbacks;
+
+  public static Iterable<Feedback> allPossibleFeedbacks() {
+    return null;
+  }
 
   public Feedback(Word guess) {
     // IO constructor.
@@ -47,7 +52,6 @@ public class Feedback {
   }
 
   public boolean eliminated(Word guess, Word candidate) {
-
     for(int i = 0; i < Word.LENGTH; i++) {
       Character guessCharAtI = guess.charAt(i);
       Character candidateCharAtI = candidate.charAt(i);

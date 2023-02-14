@@ -1,13 +1,28 @@
 package word;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Word {
   public static final int LENGTH = 5;
   private final String word;
+  private final Map<Character, Map<Integer, Boolean>> charsToPositions;
   public Word(String word) {
     this.word = word.toUpperCase();
+
+    charsToPositions = new HashMap<>();
+    for(int i = 0; i < Word.LENGTH; i++) {
+      Character correctCharAtI = this.charAt(i);
+      if(charsToPositions.containsKey(correctCharAtI)) {
+        Map<Integer, Boolean> positions = charsToPositions.get(i);
+        positions.put(i, true);
+        charsToPositions.put(correctCharAtI, positions);
+      }
+      else {
+        charsToPositions.put(correctCharAtI, Map.of(i, true));
+      }
+    }
   }
 
   @Override
@@ -20,18 +35,10 @@ public class Word {
   }
 
   Map<Character, Map<Integer, Boolean>> mapCharsToTheirPositions() {
-    Map<Character, Map<Integer, Boolean>> correctCharsToTheirPositions = new HashMap<>();
-    for(int i = 0; i < Word.LENGTH; i++) {
-      Character correctCharAtI = this.charAt(i);
-      if(correctCharsToTheirPositions.containsKey(correctCharAtI)) {
-        Map<Integer, Boolean> positions = correctCharsToTheirPositions.get(i);
-        positions.put(i, true);
-        correctCharsToTheirPositions.put(correctCharAtI, positions);
-      }
-      else {
-        correctCharsToTheirPositions.put(correctCharAtI, Map.of(i, true));
-      }
-    }
-    return correctCharsToTheirPositions;
+    return Collections.unmodifiableMap(charsToPositions);
+  }
+
+  boolean containsChar(char c) {
+    return charsToPositions.containsKey(c);
   }
 }

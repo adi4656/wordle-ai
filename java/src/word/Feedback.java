@@ -35,7 +35,7 @@ public class Feedback {
 
     for(int i = 0; i < Word.LENGTH; i++) {
       Character guessCharAtI = guess.charAt(i);
-      if(!correctCharsToTheirPositions.containsKey(guessCharAtI)) {
+      if(!correct.containsChar(guessCharAtI)) {
         letterFeedbacks[i] = NOT_IN_WORD;
       } else if (!correctCharsToTheirPositions.get(guessCharAtI).get(i)) {
         letterFeedbacks[i] = IN_WORD;
@@ -47,17 +47,16 @@ public class Feedback {
   }
 
   public boolean eliminated(Word guess, Word candidate) {
-    Map<Character, Map<Integer, Boolean>> candidateCharsToTheirPositions = candidate.mapCharsToTheirPositions();
 
     for(int i = 0; i < Word.LENGTH; i++) {
       Character guessCharAtI = guess.charAt(i);
       Character candidateCharAtI = candidate.charAt(i);
       if(letterFeedbacks[i] == CORRECT_POS && candidateCharAtI != guessCharAtI) {
         return true;
-      } else if (letterFeedbacks[i] == NOT_IN_WORD && candidateCharsToTheirPositions.containsKey(guessCharAtI)) {
+      } else if (letterFeedbacks[i] == NOT_IN_WORD && candidate.containsChar(guessCharAtI)) {
         return true;
       } else if (letterFeedbacks[i] == IN_WORD) {
-        if (!candidateCharsToTheirPositions.containsKey(guessCharAtI)) {
+        if (!candidate.containsChar(guessCharAtI)) {
           return true;
         }
         if(candidateCharAtI == guessCharAtI) {

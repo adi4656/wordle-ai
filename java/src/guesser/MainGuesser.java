@@ -17,6 +17,7 @@ public class MainGuesser extends AbstractGuesser {
 
   @Override
   public Optional<Word> guess() {
+    System.out.println("Begiig gess");
     Map<ImmutablePair<Word, Feedback>, Double> guessFeedbackToGain = buildGuessFeedbackToGain();
 
     Optional<Word> finalGuess = Optional.empty();

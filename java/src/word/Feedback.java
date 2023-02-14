@@ -24,7 +24,8 @@ public class Feedback {
       assert base3.length() == Word.LENGTH;
       List<LetterFeedback> letterFeedbacks = new ArrayList<>();
       for(int j = 0; j < Word.LENGTH; j++) {
-        letterFeedbacks.add(LetterFeedback.values()[Integer.parseInt(base3.substring(j, j))]);
+        int base3Val = Integer.parseInt(String.valueOf(base3.charAt(j)));
+        letterFeedbacks.add(LetterFeedback.values()[base3Val]);
       }
       feedbacks.add(new Feedback(letterFeedbacks));
     }
@@ -32,7 +33,11 @@ public class Feedback {
   }
 
   private static String toBase3(Integer decimal) {
-    return Integer.toString(decimal, 3);
+    String unpadded = Integer.toString(decimal, 3);
+    if(unpadded.length() < Word.LENGTH) {
+      unpadded = "0".repeat(Word.LENGTH - unpadded.length()) + unpadded;
+    }
+    return unpadded;
   }
 
   private Feedback(List<LetterFeedback> letterFeedbacks) {

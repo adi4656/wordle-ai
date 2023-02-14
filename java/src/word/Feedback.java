@@ -17,7 +17,29 @@ public class Feedback {
   private final LetterFeedback[] letterFeedbacks;
 
   public static Iterable<Feedback> allPossibleFeedbacks() {
-    return null;
+    List<Feedback> feedbacks = new ArrayList<>();
+    int numLetterFeedbacks = LetterFeedback.values().length;
+    for(int i = 0; i < Math.pow(numLetterFeedbacks, Word.LENGTH); i++) {
+      String base3 = toBase3(i);
+      assert base3.length() == Word.LENGTH;
+      List<LetterFeedback> letterFeedbacks = new ArrayList<>();
+      for(int j = 0; j < Word.LENGTH; j++) {
+        letterFeedbacks.add(LetterFeedback.values()[Integer.parseInt(base3.substring(j, j))]);
+      }
+      feedbacks.add(new Feedback(letterFeedbacks));
+    }
+    return feedbacks;
+  }
+
+  private static String toBase3(Integer decimal) {
+    return Integer.toString(decimal, 3);
+  }
+
+  private Feedback(List<LetterFeedback> letterFeedbacks) {
+    this.letterFeedbacks = new LetterFeedback[Word.LENGTH];
+    for (int i = 0; i < Word.LENGTH; i++) {
+      this.letterFeedbacks[i] = letterFeedbacks.get(i);
+    }
   }
 
   public Feedback(Word guess) {

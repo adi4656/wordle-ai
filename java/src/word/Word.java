@@ -15,12 +15,12 @@ public class Word {
     for(int i = 0; i < Word.LENGTH; i++) {
       Character correctCharAtI = this.charAt(i);
       if(charsToPositions.containsKey(correctCharAtI)) {
-        Map<Integer, Boolean> positions = charsToPositions.get(i);
+        Map<Integer, Boolean> positions = charsToPositions.get(correctCharAtI);
         positions.put(i, true);
         charsToPositions.put(correctCharAtI, positions);
       }
       else {
-        charsToPositions.put(correctCharAtI, Map.of(i, true));
+        charsToPositions.put(correctCharAtI, new HashMap<>(Map.of(i, true)));
       }
     }
   }

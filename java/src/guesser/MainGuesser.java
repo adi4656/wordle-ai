@@ -32,6 +32,8 @@ public class MainGuesser extends AbstractGuesser {
         finalGuess = Optional.of(possibleGuess);
       }
     }
+
+    return finalGuess;
   }
 
   private Map<ImmutablePair<Word, Feedback>, Double> buildGuessFeedbackToGain() {

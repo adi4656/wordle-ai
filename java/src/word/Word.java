@@ -3,11 +3,30 @@ package word;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Word {
   public static final int LENGTH = 5;
   private final String word;
   private final Map<Character, Map<Integer, Boolean>> charsToPositions;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Word word1 = (Word) o;
+    return word.equals(word1.word);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(word);
+  }
+
   public Word(String word) {
     this.word = word.toUpperCase();
 

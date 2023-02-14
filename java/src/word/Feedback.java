@@ -69,7 +69,7 @@ public class Feedback {
       Character guessCharAtI = guess.charAt(i);
       if(!correct.containsChar(guessCharAtI)) {
         letterFeedbacks[i] = NOT_IN_WORD;
-      } else if (!correctCharsToTheirPositions.get(guessCharAtI).get(i)) {
+      } else if (!correctCharsToTheirPositions.get(guessCharAtI).containsKey(i)) {
         letterFeedbacks[i] = IN_WORD;
       }
       else {
@@ -106,6 +106,30 @@ public class Feedback {
       }
     }
     return true;
+  }
+
+  @Override
+  public String toString() {
+    return "Feedback{" +
+        "letterFeedbacks=" + Arrays.toString(letterFeedbacks) +
+        '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Feedback feedback = (Feedback) o;
+    return Arrays.equals(letterFeedbacks, feedback.letterFeedbacks);
+  }
+
+  @Override
+  public int hashCode() {
+    return Arrays.hashCode(letterFeedbacks);
   }
 
   enum LetterFeedback {

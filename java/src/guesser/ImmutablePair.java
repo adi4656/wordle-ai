@@ -23,6 +23,14 @@ class ImmutablePair<T, U> {
     return Objects.hash(first, second);
   }
 
+  @Override
+  public String toString() {
+    return "ImmutablePair{" +
+        "first=" + first +
+        ", second=" + second +
+        '}';
+  }
+
   ImmutablePair(T first, U second) {
     this.first = first;
     this.second = second;

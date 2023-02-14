@@ -37,7 +37,7 @@ public class WordleAI {
         System.out.println("Guesses were: " + Arrays.toString(guesses.toArray()));
         return;
       }
-      candidates.process_feedback(feedback);
+      candidates.process_feedback(feedback, concreteGuess);
     }
   }
 

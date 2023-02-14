@@ -1,5 +1,6 @@
 package word;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class CandidateWordList extends WordList {
@@ -18,6 +19,13 @@ public class CandidateWordList extends WordList {
     return wordSet;
   }
 
-  public void process_feedback(Feedback feedback) {
+  public void process_feedback(Feedback feedback, Word guess) {
+    Set<Word> wordSetNew = new HashSet<>();
+    for(Word candidate : wordSet) {
+      if(!feedback.eliminated(guess, candidate)) {
+        wordSetNew.add(candidate);
+      }
+    }
+    this.wordSet = wordSetNew;
   }
 }
